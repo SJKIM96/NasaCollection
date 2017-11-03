@@ -4,7 +4,7 @@
 // =============================================================================
 var Bear     = require('./app/models/bear');
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/bears'); // connect to our database
+mongoose.connect('mongodb://localhost:27017/bears',{useMongoClient : true}); // connect to our database
 
 // call the packages we need
 var express    = require('express');        // call express
@@ -101,6 +101,17 @@ router.route('/bears/:bear_id')
                 res.json({ message: 'Bear updated!' });
             });
 
+        });
+    })
+    
+    .delete(function(req, res) {
+        Bear.remove({
+            _id: req.params.bear_id
+        }, function(err, bear) {
+            if (err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted' });
         });
     });
     
