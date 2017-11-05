@@ -1,7 +1,7 @@
 // script.js File
 
 
-/*$(document).ready(function () {
+$(document).ready(function () {
     $.ajax({ 
         type: 'GET', 
         url: 'https://se3316-skim96.c9users.io:8080/api/se3316', 
@@ -16,13 +16,28 @@
             });
         }
     });
-});*/
-
-let url = 'https://se3316-skim96.c9users.io:8080/api/se3316';
-
-fetch(url)
-.then(res => res.json())
-.then((out) => {
-  alert('Checkout this JSON! ', out);
-})
-.catch(err => { throw err });
+    
+    
+    $("#se3316_sender").click(function(){
+        var textval = document.getElementById("SE3316").value;
+        $.post("https://se3316-skim96.c9users.io:8080/api/se3316",
+        {
+          comments : textval
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+    
+    $("#se3352_sender").click(function(){
+        var textval = document.getElementById("SE3352").value;
+        $.post("https://se3316-skim96.c9users.io:8080/api/se3352",
+        {
+          comments : textval
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+    
+});
