@@ -24,11 +24,7 @@ var port = process.env.PORT || 8080;        // set our port
 var router = express.Router();              // get an instance of the express Router
 
 // middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
-});
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
@@ -43,7 +39,7 @@ router.route('/se3352')
 
     // create a bear (accessed at POST http://localhost:8080/api/se3352)
     .post(function(req, res) {
-
+        console.log("3352 post invoked");
         var _data = new _database();      // create a new instance of the Bear model
         _data.comments = req.body.comments;  // set the bears name (comes from the request)
         _data.course_code = "se3352";
@@ -53,6 +49,7 @@ router.route('/se3352')
             if (err){
                 res.send(err);
             }
+            console.log("se3352 post");
             res.json({ message: 'comments created!' });
         });
 
@@ -60,6 +57,7 @@ router.route('/se3352')
     
     // get all the bears (accessed at GET http://localhost:8080/api/se3352)
     .get(function(req, res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
         _database.find(function(err, _database) {
             if (err){
                 res.send(err);
@@ -70,9 +68,9 @@ router.route('/se3352')
     
 router.route('/se3316')
 
-    // create a pos (accessed at POST http://localhost:8080/api/se3316)
+    //create a pos (accessed at POST http://localhost:8080/api/se3316)
     .post(function(req, res) {
-
+        console.log("3316 post invoked");
         var _data = new _database();      // create a new instance of the Bear model
         _data.comments = req.body.comments;  // set the bears name (comes from the request)
         _data.course_code = "se3316";
@@ -82,6 +80,7 @@ router.route('/se3316')
             if (err){
                 res.send(err);
             }
+            console.log("post se3316");
             res.json({ message: 'comments created!' });
         });
 
@@ -90,11 +89,12 @@ router.route('/se3316')
     // get all the bears (accessed at GET http://localhost:8080/api/se3352)
     .get(function(req, res) {
         console.log("se3316 get function logged")
+        res.setHeader("Access-Control-Allow-Origin", "*");
         _database.find(function(err, _database) {
             if (err){
+                console.log("error");
                 res.send(err);
             }
-            
             res.json(_database);
             
         });
@@ -103,51 +103,51 @@ router.route('/se3316')
 
 // on routes that end in /bears/:bear_id
 // ----------------------------------------------------
-router.route('/bears/:bear_id')
+// router.route('/bears/:bear_id')
 
-    // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
-    .get(function(req, res) {
-        _database.findById(req.params._database_id, function(err, _database) {
-            if (err){
-                res.send(err);
-            }
-            res.json(_database);
-        });
-    })
+//     // get the bear with that id (accessed at GET http://localhost:8080/api/bears/:bear_id)
+//     .get(function(req, res) {
+//         _database.findById(req.params._database_id, function(err, _database) {
+//             if (err){
+//                 res.send(err);
+//             }
+//             res.json(_database);
+//         });
+//     })
     
-    .put(function(req, res) {
+//     .put(function(req, res) {
 
-        // use our bear model to find the bear we want
-        _database.findById(req.params.bear_id, function(err, _database) {
+//         // use our bear model to find the bear we want
+//         _database.findById(req.params.bear_id, function(err, _database) {
 
-            if (err){
-                res.send(err);
-            }
+//             if (err){
+//                 res.send(err);
+//             }
 
-            _database.name = req.body.name;  // update the bears info
+//             _database.name = req.body.name;  // update the bears info
 
-            // save the bear
-            _database.save(function(err) {
-                if (err){
-                    res.send(err);
-                }
+//             // save the bear
+//             _database.save(function(err) {
+//                 if (err){
+//                     res.send(err);
+//                 }
 
-                res.json({ message: 'database updated!' });
-            });
+//                 res.json({ message: 'database updated!' });
+//             });
 
-        });
-    })
+//         });
+//     })
     
-    .delete(function(req, res) {
-        _database.remove({
-            _id: req.params._database_id
-        }, function(err, bear) {
-            if (err){
-                res.send(err);
-            }
-            res.json({ message: 'Successfully deleted' });
-        });
-    });
+//     .delete(function(req, res) {
+//         _database.remove({
+//             _id: req.params._database_id
+//         }, function(err, bear) {
+//             if (err){
+//                 res.send(err);
+//             }
+//             res.json({ message: 'Successfully deleted' });
+//         });
+//     });
     
     
     
