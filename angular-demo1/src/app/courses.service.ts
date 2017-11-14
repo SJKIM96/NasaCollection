@@ -4,9 +4,16 @@ import { Injectable } from '@angular/core';
 export class CoursesService {
 
     getCourses() : string[] {
-        return  ["c1", "c2", "c3"];
+        return  this.container;
     }
     
+    setCourses (course : string) {
+        if (this.container.includes (course)){
+            return;
+        }
+        this.container.push(course);
+    }
   constructor() { }
 
+    container = ["c1", "c2", "c3"];
 }

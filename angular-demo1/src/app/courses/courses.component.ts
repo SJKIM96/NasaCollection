@@ -9,10 +9,17 @@ import{CoursesService} from '../courses.service'
 })
 export class CoursesComponent implements OnInit {
   //dependency injection
+  private myservice;
+  
   constructor(courseService : CoursesService) { 
     this.courses_ = courseService.getCourses();
+    this.myservice = courseService;
   }
+  
 
+  onclick(value : string ){
+    this.myservice.setCourses(value);
+  }
   ngOnInit() {
   }
 
