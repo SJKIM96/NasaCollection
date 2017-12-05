@@ -1,0 +1,221 @@
+commit e997ca00e62b8adc60f6570542bd90380509045b
+Author: sjkim <skim952@uwo.ca>
+Date:   Mon Dec 4 23:28:01 2017 +0000
+
+    done
+
+commit a4ba74912c294ae9a263a4ea92aa2b661488830f
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Nov 14 23:49:30 2017 +0000
+
+    pt 2 done
+
+commit c9b157d3c0fdcd88169c2c939220a1b5cc9c5102
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Nov 14 22:30:19 2017 +0000
+
+    pt 1 done
+
+commit 84d54609c54dc90646d100ddbd04c803da7222c6
+Author: sjkim <skim952@uwo.ca>
+Date:   Mon Nov 6 04:54:01 2017 +0000
+
+    done
+
+commit 8c12d4816fec76016b71ccb74beb9d3b428396c3
+Author: sjkim <skim952@uwo.ca>
+Date:   Sun Nov 5 22:41:11 2017 +0000
+
+    post method done
+
+commit 9fbd3efb52ba654c87f86a4c6bd4c6b2d06ce7bf
+Author: sjkim <skim952@uwo.ca>
+Date:   Sun Nov 5 22:15:40 2017 +0000
+
+    rough2
+
+commit d0b7c9feb05b9d220f9a0bc3bb63df25d0ef42c3
+Author: sjkim <skim952@uwo.ca>
+Date:   Fri Nov 3 22:16:15 2017 +0000
+
+    finished all the function
+
+commit 2a8e765fdf2bc79eccd1550cc9303b9e011402ea
+Author: sjkim <skim952@uwo.ca>
+Date:   Fri Nov 3 21:58:09 2017 +0000
+
+    rough1
+
+commit 8c2d45f601f5032fe5ecd91f9daf1937dc4ece86
+Author: sjkim <skim952@uwo.ca>
+Date:   Thu Nov 2 16:01:12 2017 +0000
+
+    branch 1
+
+commit d169624e040a3b6096e4d430537bde5bb301d8e6
+Author: sjkim <skim952@uwo.ca>
+Date:   Thu Nov 2 15:37:59 2017 +0000
+
+    new folder
+
+commit 08395ce1527e8f7eeac780cabeaa3f35b229039f
+Author: sjkim <skim952@uwo.ca>
+Date:   Sun Oct 22 19:46:46 2017 +0000
+
+    lab2q2
+
+commit 36bcbfe7050cbd1be9e58adb9ba41721be93e256
+Author: sjkim <skim952@uwo.ca>
+Date:   Sun Oct 22 00:52:30 2017 +0000
+
+    q1
+
+commit 41a44e4caaed85f93e510fd2f9b1edf5a6bf240c
+Author: sjkim <skim952@uwo.ca>
+Date:   Mon Oct 16 18:37:36 2017 +0000
+
+    example
+
+commit aad706148be3244d0f2665242aeb6ca971438634
+Author: sjkim <skim952@uwo.ca>
+Date:   Fri Oct 13 16:13:31 2017 +0000
+
+    lab2
+
+commit 5e04554b7f3ef021b3ff1e401921e767ec8f246b
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 17:12:24 2017 +0000
+
+    add properties to text alinment
+
+commit 02d0bda9df8eaa088e166ebcd2023630eb58918f
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 17:08:18 2017 +0000
+
+    gettting font from external site
+
+commit 4f4afdae5232e6b2b0deebc96183543749ac28a0
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 17:02:31 2017 +0000
+
+    font manipulation
+
+commit 99447420d5915c3c18fc32114f5806c54b67986d
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:58:43 2017 +0000
+
+    manipulate background
+
+commit a5438e008ccbc756ea8eaeaaf87a0e67a54ac4f2
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:40:30 2017 +0000
+
+    border control using css
+
+commit ad66da8b7fad4a2c9664cfad2a86d8c7b9a7528c
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:36:44 2017 +0000
+
+    differenciate between class and id
+
+commit 1b1acc2a9e5bcabcd73e60123772c39629f4b9ec
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:34:06 2017 +0000
+
+    manipulate the classes scope to change element
+
+commit 2541ae61fe15c6cc56d434e6f2d6ec3259f1df23
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:30:25 2017 +0000
+
+    link manipulation and onhover action
+
+commit a772f7f0204aec4ffb1d49f976bebce8bbf72893
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:26:20 2017 +0000
+
+    modyfying using title element
+
+commit 8a18c63fa88784522003852bd48ea2fa72fe03c5
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:19:27 2017 +0000
+
+    going to specific scope
+
+commit eec05e9937c403a1ffcba5725d0f168bc2d89e87
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:15:39 2017 +0000
+
+    css in diff file
+
+commit 9ffae8084945bdb039ac01f99451385b8183c24c
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:11:36 2017 +0000
+
+    overriding
+
+commit 5563b5618c378a1ade4fcebbd2364b57c8e3b1a6
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 16:06:29 2017 +0000
+
+    intro to css
+
+commit 679721cfbfa4ab2eb0084b2ce3c74d0576ba7939
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:59:41 2017 +0000
+
+    figure and figcaption
+
+commit b6b9238e4dd0b3a90eaa98f9c455c1cc7c74de95
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:56:50 2017 +0000
+
+    clean up
+
+commit 88c8ebbb084c921ab2e4a8178d70e008f326839a
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:52:24 2017 +0000
+
+    header and footer
+
+commit 0fc482e4b5065e2a026bb8b776e89cb2c82aaeee
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:47:24 2017 +0000
+
+    linking
+
+commit e64ae9551c34b4c0063dcdd764086bcd0257583f
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:39:50 2017 +0000
+
+    ex5
+
+commit b4d66a8b3b8e1575f5ee95c99672c8035da70817
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:32:36 2017 +0000
+
+    remaining images
+
+commit 72b8c5ae7a2063996928dd07bfc7028818f5cb6e
+Author: sjkim <skim952@uwo.ca>
+Date:   Tue Sep 19 15:30:55 2017 +0000
+
+    added images file
+
+commit 44197ad96061fae5dfa2ccde7d579aff34e21a83
+Author: sjkim <skim952@uwo.ca>
+Date:   Mon Sep 18 19:02:03 2017 +0000
+
+    add Lab01exercise04.html
+
+commit 037d944be52104671cac2b5bd0626b8e673c478b
+Author: sjkim <skim952@uwo.ca>
+Date:   Thu Sep 14 18:41:36 2017 +0000
+
+    Lab1
+
+commit 15d2ca1200bd60b2ecfb959bae0185f17e33d1ac
+Author: sjkim <skim952@uwo.ca>
+Date:   Thu Sep 14 17:42:30 2017 +0000
+
+    Add welcome.html
