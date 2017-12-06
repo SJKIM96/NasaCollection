@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './not-loggedin.component.html',
   styleUrls: ['./not-loggedin.component.css']
 })
-export class NotLoggedinComponent implements OnInit {
+export class NotLoggedInComponent implements OnInit {
 
   constructor() { }
 

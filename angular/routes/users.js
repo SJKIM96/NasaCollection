@@ -1,59 +1,15 @@
 const express = require('express');
 const router = express.Router();
+
 const User = require("../models/account");
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
-const config = require("../config/database");
-const eVer = require("../email-verification");
 const Collection = require("../models/collection");
-//Register
-router.post('/register', (req, res) =>{
-    let newUser = new User({
-        email: req.body.email,
-        password: req.body.password,
-        __v: req.body.__v,
-        usertoken: req.body.usertoken
-    });
-    
-    // Check if a user with that email is already registered
-    User.getUserByEmail(newUser.email, (error, user)=>{
-        if(error){
-            throw error;
-        } 
-        
-        if(user){
-              return res.json({
-                    success: false,
-                    msg: "User already registered!"
-            });
-        } else{
-            User.addUser(newUser, (err, user) =>{
-                if(err){
-                    res.json({
-                        success: false,
-                        msg: "Failed to register user"
-                    });
-                } else{
-                    res.json({
-                    success: true,
-                    msg: "User Registered"
-                    });
-                    // console.log(user);
-                    if(user.email == "mdawoud2@uwo.ca"){
-                        user.__v = 0;
-                        // user.isAdmin = 1;
-                        console.log("ADMIN REGISTERED");
-                        console.log(user);
-                        eVer.verifyUser(newUser);
-                    } else{
-                        user.__v = 0;
-                        eVer.verifyUser(newUser);   
-                    }
-                }    
-            });
-        } 
-    });
-});
+
+const config = require("../routes/database");
+const eVer = require("../emailvar");
+
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+
 
 //Authenticate
 router.post('/authenticate', (req, res) =>{
@@ -105,7 +61,7 @@ router.post('/re-verification-email', function(req, res) {
         // usertoken: req.body.usertoken
     };
     eVer.reVerifyUser(newUser);
-	res.send({success: true, msg: "You're verification email has been sent"});
+	res.send({success: true, msg: "Verification email sent"});
 });
 
 //Verification
@@ -115,15 +71,64 @@ router.get('/verify/:verificationToken', function(req, res) {
 			if (err) {
 				res.json({
 				    success: false,
-					error: 'Error verifying email.',
+					error: 'Error.',
 				});
 			} else {
 				res.json({
 					success: true, 
-					message: 'Youre account is now verified'
+					message: 'Verified'
 				});
 			}
 		});
+});
+
+//Register
+router.post('/register', (req, res) =>{
+    let newUser = new User({
+        email: req.body.email,
+        password: req.body.password,
+        __v: req.body.__v,
+        usertoken: req.body.usertoken
+    });
+    
+    // Check if a user with that email is already registered
+    User.getUserByEmail(newUser.email, (error, user)=>{
+        if(error){
+            throw error;
+        } 
+        
+        if(user){
+              return res.json({
+                    success: false,
+                    msg: "User already registered!"
+            });
+        } else{
+            User.addUser(newUser, (err, user) =>{
+                if(err){
+                    res.json({
+                        success: false,
+                        msg: "Failed to register user"
+                    });
+                } else{
+                    res.json({
+                    success: true,
+                    msg: "User Registered"
+                    });
+                    // console.log(user);
+                    if(user.email == "testsmtp952@gmail.com"){
+                        user.__v = 0;
+                        // user.isAdmin = 1;
+                        console.log("ADMIN REGISTERED");
+                        console.log(user);
+                        eVer.verifyUser(newUser);
+                    } else{
+                        user.__v = 0;
+                        eVer.verifyUser(newUser);   
+                    }
+                }    
+            });
+        } 
+    });
 });
 
 //----------------------------------------Profile-------------------------------------------------------
@@ -145,40 +150,36 @@ router.post('/collection',(req,res,next)=>{
 	});
     
 		
-		console.log('New collection from user with email '+newCollection.email);
+		console.log('New user with email '+newCollection.email);
 			Collection.addCollection(newCollection, (err, user)=>{
 				if(err){
 					res.json({
 						success: false,
-						message: 'Failed to create collection'
+						message: 'Collection failed'
 					});
 				}
 				else{
 					res.json({
 						success: true,
-						message: 'Collection successfully created'
+						message: 'Collection successfull'
 					});
 				}
 			});
 
 });
 
-//Get a users collection 
+//Get a user collection 
 router.get('/collections/usercollections/:email', passport.authenticate('jwt', {session:false}),(req,res,next)=>{
 	let newCollection = new User({
 		email: req.params.email,
 	});
-	console.log('1');
-	// console.log(Collection.getCollectionByEmail(newCollection.email));
-		console.log('2');
 
 	Collection.getCollectionByEmail(newCollection.email, (error, cn)=>{
 		if(error){
-			console.log("erooooooooooooooooooooooooooooooooooooooooooooooooooooooooooor");
+			console.log("ERROR");
 			throw error;
 		} 
 
-		// console.log('looking for collections from '+newCollection.email);
 		// // email not found
 		if(cn){
 			res.json({collection: cn});
@@ -188,7 +189,6 @@ router.get('/collections/usercollections/:email', passport.authenticate('jwt', {
 			});
 		}
 
-    
 });
 });
 

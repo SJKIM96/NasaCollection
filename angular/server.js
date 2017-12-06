@@ -1,36 +1,52 @@
-// server.js
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
+const mongoose = require('mongoose');
 
-// BASE SETUP
-// =============================================================================
+var port = 8888;
+var app = express();
+var users = require('./routes/users');
+var config = require("./routes/database");
 
-// call the packages we need
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
-var bodyParser = require('body-parser');
+//Connected to database
+mongoose.connect(config.database);
 
-// configure app to use bodyParser()
-// this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-var port = process.env.PORT || 8080;        // set our port
-
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();              // get an instance of the express Router
-
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+//Log on connection 
+mongoose.connection.on('connected', () => {
+    console.log("Connected to db " + config.database);
 });
 
-// more routes for our API will happen here
+//log on error
+mongoose.connection.on('error', (err) => {
+    console.log("Database " + err);
+});
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
+//CORS Middleware
+app.use(cors());
 
-// START THE SERVER
-// =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+//BodyParser Middleware
+app.use(bodyParser.json());
+
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require("./routes/passport")(passport);
+
+//Reroute to users
+app.use('/users', users);
+
+//Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Index Route
+app.get('/', (req, res) => {
+   res.send('Invalid Endpoint'); 
+});
+
+//Start server
+app.listen(port, () =>{
+    console.log('Server started on port ' + port);
+});

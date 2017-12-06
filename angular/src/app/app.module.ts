@@ -1,40 +1,57 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
+import { HttpClientModule } from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import { NasaService } from './nasa.service';
+import { CollectionService } from './collectionserve.service';
+import { HttpModule } from '@angular/http';
+import { FlashMessagesModule } from 'ngx-flash-messages';
 import { AppComponent } from './app.component';
-import { CoursesComponent } from './courses/courses.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BlockerComponent } from './blocker/blocker.component';
 import { LoginComponent } from './login/login.component';
-import { GuardsComponent } from './guards/guards.component';
+import { AuthService } from './authserve.service';
+import { NotLoggedInComponent } from './not-loggedin/not-loggedin.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NotLoggedinComponent } from './not-loggedin/not-loggedin.component';
-import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ValidateService } from './validate.service';
+//import { AdminService } from './admin.service';
+//import {AdminLoginComponent} from './policies/policies.component';
 
+import { PoliciesComponent } from './policies/policies.component';
+
+const appRoutes: Routes = [
+  { path: '', component: NotLoggedInComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'profile', component: ProfileComponent},
+
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'policies', component: PoliciesComponent}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
-    AdminComponent,
-    AdminLoginComponent,
-    DashboardComponent,
-    BlockerComponent,
     LoginComponent,
-    GuardsComponent,
+    NotLoggedInComponent,
     NavbarComponent,
-    NotLoggedinComponent,
+    RegisterComponent,
+    DashboardComponent,
     ProfileComponent,
-    RegisterComponent
+    PoliciesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    FlashMessagesModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [AuthService, ValidateService, CollectionService, NasaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
