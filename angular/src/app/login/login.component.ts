@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../authserve.service';
+import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import { FlashMessagesService } from 'ngx-flash-messages';
 
@@ -24,6 +24,13 @@ export class LoginComponent implements OnInit {
   }
   
   onLoginSubmit(){
+    
+   // if(this.email == "mustafadawoud97@gmail.com" && this.password == "ok"){
+      // this.flashMessage.show('Signed in as Admin', {
+      //       classes: ['alert', 'alert-success'] });
+      //      this.admin.changeMessage(true);
+            // this.administrator = true;
+   // }
     const user = {
       email: this.email,
       password: this.password,
@@ -32,21 +39,22 @@ export class LoginComponent implements OnInit {
     
     this.authService.authenticateUser(user).subscribe(
       res => {
-        console.log("login");
+        console.log("LOGIN USER");
         console.log(res.user);
         if(!(res.success)){
           this.flashMessage.show(res.msg, {
             classes: ['alert', 'alert-danger'] });
+          //  this.router.navigate(['/login']);
         } 
         
         else if(res.user.__v == 2){
-          this.flashMessage.show("Logged as admin", {
+          this.flashMessage.show("You are now logged as admin", {
           classes: ['alert', 'alert-success'] });
           this.authService.storeUserData(res.token, res.user);
         }
         
         else if(res.user.__v == 0){
-          alert( "Your account not verified");
+          alert( "Your account is still not verified, if you want to have the verification email re-send, please put the email you registered with in the email section and click on the resent verification button");
             this.router.navigate(['/login']);
             this.reS = true;
         }
@@ -73,7 +81,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.reSendVeri(user).subscribe(
       res =>{
-         this.flashMessage.show("Verification sent", {
+         this.flashMessage.show("Verification Email Re-sent", {
             classes: ['alert', 'alert-success'] });
       }
     );

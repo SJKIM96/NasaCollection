@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
-const config = require('../routes/database');
+const config = require('../config/database');
 const uuid = require('uuid');
 const Token = require("token");
 
@@ -28,6 +28,15 @@ var AccountSchema = new Schema({
     },
     isAdmin: {
         type: Number
+    }, 
+    sec: {
+        type: String
+    },
+    dmca: {
+        type: String
+    },
+    pri: {
+       type: String 
     }
 });
 

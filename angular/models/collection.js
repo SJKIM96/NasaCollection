@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcryptjs');
-const config = require('../routes/database');
+const config = require('../config/database');
 
 //User Schema
-//Giving collection attributes
+//Giving users these attributes
 const CollectionSchema = mongoose.Schema({
     email: String,
     title: String,

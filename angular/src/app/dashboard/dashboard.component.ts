@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {CollectionService} from "../collectionserve.service";
-import {AuthService} from "../authserve.service"
+import {CollectionService} from "../collection.service";
+import {AuthService} from "../auth.service";
+
+// import {Http} from '@angular/http';
+// //import { DataService } from '../data.service';
+// import {Router} from '@angular/router';
+// import { NasaApiService } from '../../services/nasa-api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +13,6 @@ import {AuthService} from "../authserve.service"
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
   photos: any[];
   happy: any;
   rating: any;
@@ -16,7 +20,7 @@ export class DashboardComponent implements OnInit {
   image: any[];
   count: number;
   
-  public isReady = false; 
+  public isReady = false; // Used to make the image request wait on other things
   
   constructor(private authService: AuthService,
               private cService: CollectionService) {
@@ -27,7 +31,7 @@ export class DashboardComponent implements OnInit {
     this.collectionNumber = "Collection ";
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
-    var userEmail = splitter[1].split('"}')
+    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
     console.log(userEmail[0]);
     this.cService.getUserCollections(userEmail[0]).subscribe(
       (res: any) => {
@@ -59,7 +63,7 @@ export class DashboardComponent implements OnInit {
   }
   
   test(){
-       
+        // console.log(this.happy);
   }
   
   removeFromCollection(photo){

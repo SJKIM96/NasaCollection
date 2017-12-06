@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import{AuthService} from '../authserve.service';
+import{AuthService} from '../auth.service';
 import {Router} from '@angular/router';
-import { NasaService } from '../nasa.service';
+import { NasaApiService } from '../nasa-api.service';
 import { FlashMessagesService } from 'ngx-flash-messages';
-import { CollectionService } from '../collectionserve.service';
+import { CollectionService } from '../collection.service';
 import {ValidateService} from '../validate.service'
 
 @Component({
@@ -26,7 +26,7 @@ photos: any [];
 image: any [];
   constructor(private authService: AuthService, 
   private router: Router, 
-  private nasaService: NasaService, 
+  private nasaApiService: NasaApiService, 
   private collectionService: CollectionService,  
   private flashMessagesService: FlashMessagesService,
   private validateService : ValidateService
@@ -39,7 +39,7 @@ image: any [];
   onCollectionSubmit(){
     var thing = (this.authService.returnEmail());
     var splitter = thing.split('"email":"');
-    var userEmail = splitter[1].split('"}')
+    var userEmail = splitter[1].split('"}') //makes sure we get the email portion of the object
     const collection = {
       email: userEmail[0], 
       searchPhoto: this.searchPhoto,
@@ -51,9 +51,9 @@ image: any [];
     if(this.validateService.validateCollection(collection)){
     this.makeCollection(collection);
     }else{
-    this.flashMessagesService.show('Title required',  {
+    this.flashMessagesService.show('Please make a title',  {
       classes: ['alert', 'alert-danger'],
-      timeout: 3000, 
+      timeout: 3000, // Default is 3000;
     });
 }
     
@@ -68,7 +68,7 @@ console.log(data.collection.items[0].links[0]["href"]);
 };
 
 search(searchPhoto){
-  this.nasaService.getValues(this.searchPhoto)
+  this.nasaApiService.getValues(this.searchPhoto)
   .subscribe(
         (data: any) => this.handleSuccess(data),
         );
@@ -78,20 +78,19 @@ makeCollection(collection){
   console.log(collection.email + "Inside makeCollection");
   this.collectionService.sendCollection(collection).subscribe(data => {
       if(data.success){
-      this.flashMessagesService.show('image collection saved',  {
+      this.flashMessagesService.show('You have made an image collection!',  {
       classes: ['alert', 'alert-success'], 
       timeout: 3000, 
     });
-      } 
-      else{
-      this.flashMessagesService.show('Failed',  {
+      } else{
+      this.flashMessagesService.show('Collection creation failed',  {
       classes: ['alert', 'alert-danger'], 
       timeout: 3000, 
     });
       }
   });
       
- 
+  console.log("2")
   this.image=[]; //empty collection so user can create new one
   this.count = 0;
 }

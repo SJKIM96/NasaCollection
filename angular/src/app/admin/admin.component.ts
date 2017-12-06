@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import {AuthService} from '../authserve.service';
+import { AdminService } from "../admin.service";
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,16 +8,19 @@ import {AuthService} from '../authserve.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  security : String;
+  security: string;
   privacy:String;
   dmca:String;
 
-  constructor(private authService: AuthService ) {
-    
-  }
-
-
+  constructor(private admin: AdminService,
+              private authService: AuthService ) {
+                // this.authService.getSecurity().subscribe({
+                //   res =>{
+                //     console.log(res);
+                //   }
+                // });
+      }
+  
   ngOnInit() {
     // this.security = lol();
     console.log("HI");
@@ -52,8 +55,5 @@ export class AdminComponent implements OnInit {
     // this.authService.changePrivacy(userEmail[0], this.privacy);
     // this.authService.changeDmca(userEmail[0], this.dmca);
   }
-  
-  
-  
-  
+
 }

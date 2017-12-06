@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../validate.service';
-import {AuthService } from '../authserve.service';
 import { FlashMessagesService } from 'ngx-flash-messages';
-
+import {AuthService } from '../auth.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -29,15 +28,17 @@ export class RegisterComponent implements OnInit {
       password: this.password
     }
     
-    if(!this.validateService.validateEmail(user.email)){
-    this.flashMessageService.show('input valid email', {
+    //Required Fields
+    if(!this.validateService.validateRegister(user)){
+     this.flashMessageService.show('Please fill in all fields!', {
       classes: ['alert', 'alert-danger']
     });
       return false;
     }
-   
-    if(!this.validateService.validateRegister(user)){
-     this.flashMessageService.show('Please fill missing fields!', {
+    
+     //Required Fields
+    if(!this.validateService.validateEmail(user.email)){
+    this.flashMessageService.show('Please use a valid email!', {
       classes: ['alert', 'alert-danger']
     });
       return false;
@@ -48,14 +49,14 @@ export class RegisterComponent implements OnInit {
       res => {
         console.log(res.success);
         if(res.success){
-        alert('registered, verify email before logging in');
+        alert('You are now registered, please go verify your email before loging in!');
         this.router.navigate(['/login']);
         } else{
           alert(JSON.stringify(res.msg));
         }
         }, 
         err => {
-          this.flashMessageService.show('authrize failed', {
+          this.flashMessageService.show('Something bad happened!', {
             classes: ['alert', 'alert-danger'] });
         });
   }
